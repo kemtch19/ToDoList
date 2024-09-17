@@ -33,12 +33,14 @@ Sigue estos pasos para configurar el entorno y ejecutar el proyecto localmente.
    ```bash
    dotnet restore
 4. Configura tu conexión a MongoDB: Abre el archivo appsettings.json y actualiza la cadena de conexión de MongoDB con tu propia URL.
+  ```
    {
     "ConnectionStrings": {
       "MongoDB": "mongodb://localhost:27017/todolist-db"
     }
   }
-5. Ejecuta la aplicación:
+  ```
+6. Ejecuta la aplicación:
    ```bash
    dotnet run
 ## Estructura del Proyecto
@@ -53,10 +55,12 @@ Este proyecto está organizado en varias carpetas clave:
 ## Endpoints de la API
 Los endpoints que maneja esta API para la gestión de la to-do list son:
 
-- ```GET /api/tasks```: Obtiene todas las tareas.
-- ```POST /api/tasks```: Crea una nueva tarea.
-- ```PUT /api/tasks/{id}```: Actualiza una tarea por su ID.
-- ```PUT /api/tasks/{id}```: Cambia el estado de una tarea a true si es borrada (soft delete).
+- ```GET /api/Task/List```: Obtiene todas las tareas.
+- ```GET /api/Task/List/{id}```: Obtiene una tarea por su id.
+- ```POST /api/Task/Create```: Crea una nueva tarea.
+- ```PUT /api/Task/UpdateByID/{id}```: Actualiza el estado de una tarea por su ID.
+- ```PUT /api/Task/UpdateByName/{name}```: Actualiza el estado de una tarea o subtarea por su nombre.
+- ```PUT /api/Task/Delete/{id}```: Cambia el estado de una tarea a true si es borrada (soft delete).
 
 ## Contribuir
 Si deseas contribuir a este proyecto:
