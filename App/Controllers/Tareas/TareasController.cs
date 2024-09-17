@@ -3,7 +3,7 @@ using ToDoList.Services.Interface;
 
 namespace ToDoList.App.Controllers.Tareas
 {
-    public class TareaController: Controller
+    public class TareaController : Controller
     {
         private readonly ITareaRepository _tareaRepository;
         public string ErrorMessage = "Server Error: The request has not been resolve";
@@ -18,7 +18,7 @@ namespace ToDoList.App.Controllers.Tareas
         [Route("Tarea/List")]
         public async Task<IActionResult> GetTarea()
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(Utils.Exceptions.StatusError.CreateBadRequest());
             }
@@ -27,6 +27,26 @@ namespace ToDoList.App.Controllers.Tareas
             {
                 var tareas = await _tareaRepository.GetTarea();
                 return Ok(tareas);
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"error: {e.Message}");
+            }
+        }
+
+        //Get task by id
+        [HttpGet]
+        [Route("Tarea/{id}")]
+        public async Task<IActionResult> GetTareaById(string id)
+        {
+            try
+            {
+                var tarea = await _tareaRepository.GetTareaID(id);
+                if (tarea == null)
+                {
+                    return NotFound("The task was not found.");
+                }
+                return Ok(tarea);
             }
             catch (Exception e)
             {
