@@ -15,7 +15,7 @@ namespace ToDoList.App.Controllers.Tareas
 
         //Get all coders
         [HttpGet]
-        [Route("Tarea/List")]
+        [Route("Task/List")]
         public async Task<IActionResult> GetTarea()
         {
             if (!ModelState.IsValid)
@@ -36,7 +36,7 @@ namespace ToDoList.App.Controllers.Tareas
 
         //Get task by id
         [HttpGet]
-        [Route("Tarea/{id}")]
+        [Route("Task/List/{id}")]
         public async Task<IActionResult> GetTareaById(string id)
         {
             try

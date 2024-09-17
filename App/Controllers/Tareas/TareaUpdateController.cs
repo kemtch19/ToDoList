@@ -3,9 +3,7 @@ using ToDoList.Services.Interface;
 
 namespace ToDoList.App.Controllers.Tareas
 {
-    [ApiController]
-    [Route("api/updateTask")]
-    public class TareaUpdateController : ControllerBase
+    public class TareaUpdateController : Controller
     {
         private readonly ITareaRepository _tareaRepository;
         public TareaUpdateController(ITareaRepository tareaRepository)
@@ -13,7 +11,7 @@ namespace ToDoList.App.Controllers.Tareas
             _tareaRepository = tareaRepository;
         }
 
-        [HttpPut("{id}/statusById")]
+        [HttpPut("Task/UpdateByID/{id}")]
         public async Task<IActionResult> UpdateStatus(string id, [FromBody] string newStatus)
         {
             if (string.IsNullOrEmpty(newStatus))
@@ -32,7 +30,7 @@ namespace ToDoList.App.Controllers.Tareas
             }
         }
 
-        [HttpPut("{name}/statusByName")]
+        [HttpPut("Task/UpdateByName/{name}")]
         public async Task<IActionResult> UpdateStatusByName(string name, [FromBody] string statusUpdate)
         {
             if (string.IsNullOrEmpty(statusUpdate))

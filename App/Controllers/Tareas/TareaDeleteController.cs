@@ -12,7 +12,7 @@ namespace ToDoList.App.Controllers.Tareas
         }
 
         [HttpPut]
-        [Route("tarea/{id}/delete")]
+        [Route("Task/Delete/{id}")]
         public async Task<IActionResult> DeleteTask(string id)
         {
             try
