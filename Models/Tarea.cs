@@ -1,16 +1,15 @@
-
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace ToDoList.Models
 {
-    public class Task
+    public class Tarea
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
-        public string? Name { get; set; }
-        public string? Status { get; set; }
-        public List<Subtask>? Subtasks { get; set; }
+        public string? name { get; set; }
+        public string? status { get; set; } // pending, in_process, completed
+        public List<Subtask>? subtasks { get; set; }
     }
 }

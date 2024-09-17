@@ -1,4 +1,6 @@
 using ToDoList.Data;
+using ToDoList.Services.Interface;
+using ToDoList.Services.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +9,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// add the services for controllers
+builder.Services.AddControllers();
+
 //Service to MongoDb
 builder.Services.AddSingleton<MongoDbContext>();
+
+//Service for the cors middleware
+builder.Services.AddCors(Options=>{
+    Options.AddPolicy("AllowAnyOrigin", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+});
+
+//Services to Interface and Repository
+builder.Services.AddScoped<ITareaRepository, TareaRepository>();
 
 var app = builder.Build();
 
@@ -20,5 +33,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// use for the service of cors
+app.UseCors("AllowAnyOrigin");
+
+//Controllers
+app.MapControllers();
 
 app.Run();

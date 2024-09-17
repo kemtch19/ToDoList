@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MongoDB.Driver;
+using ToDoList.Models;
 
 namespace ToDoList.Data
 {
@@ -14,6 +11,6 @@ namespace ToDoList.Data
             _database = client.GetDatabase(configuration["MongoDbSettings:Database"]);
         }
 
-        public IMongoCollection<Task> Tasks => _database.GetCollection<Task>("Tasks");
+        public IMongoCollection<Tarea> Tareas => _database.GetCollection<Tarea>("Tasks");
     }
 }
